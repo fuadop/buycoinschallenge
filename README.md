@@ -2,4 +2,4 @@
 
 ### Buy coins frontend challenge for frontend engineering position
 
-_[view the app](https://fuadop.github.io/buycoinschallenge)_
+_[view the app](https://buycoinschallenge.netlify.app)_
