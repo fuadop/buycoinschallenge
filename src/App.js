@@ -57,7 +57,7 @@ class App extends HTMLElement {
             const data = await fetch("https://api.github.com/graphql" ,{
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer 8e0c6d138dea2e88018df63e2b60a2b4cd9a2a32"
+                    "Authorization": "Bearer 258fc3fadb79a9fc71de5fdaf10a21a29b9d7546"
                 },
                 body: JSON.stringify({
                     query: `
