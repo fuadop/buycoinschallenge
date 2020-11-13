@@ -3,7 +3,7 @@ class Avatar extends HTMLElement {
         super()
 
         this.root = this.attachShadow({mode: "open"})
-        this.url = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+        this.url = "/src/images/fallback.jpg"
     }
 
     connectedCallback () {
@@ -30,16 +30,21 @@ class Avatar extends HTMLElement {
                 border-radius: 50%;
                 width: 250px;
                 height: 250px;
+                background-color: grey;
                 overflow: hidden;
             }
 
             img {
                 width: 100%;
+                object-fit: cover;
             }
 
             @media (max-width: 700px) {
                 div {
                     margin-top: .5rem;
+                    margin-right: .8rem;
+                    width: 100px;
+                    height: 100px;
                 }
             }
         </style>

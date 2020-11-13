@@ -4,9 +4,21 @@ class NavHeader extends HTMLElement {
         super()
 
         this.root = this.attachShadow({mode: "open"})
+        this.repoamount = "..."
+    }
+
+    static get observedAttributes () {
+        return ["repocount"]
     }
 
     connectedCallback () {
+        this.render()
+    }
+
+    attributeChangedCallback (name, _oldValue, newValue) {
+        if (name === "repocount") {
+            this.repoamount = newValue
+        }
         this.render()
     }
 
@@ -14,6 +26,13 @@ class NavHeader extends HTMLElement {
         this.root.innerHTML = 
         `
         <style>
+
+            header {
+                position: sticky;
+                top: 0;
+                background: linear-gradient(to right, transparent 30%, white 30%)
+            }
+
             nav {
                 background-color: black;
                 padding: .3rem;
@@ -29,6 +48,7 @@ class NavHeader extends HTMLElement {
             }
 
             ul {
+                background: linear-gradient(to right,transparent 30%, white 30%);
                 font-weight: bold;
                 height: 4vh;
                 padding-right: 3rem;
@@ -48,13 +68,36 @@ class NavHeader extends HTMLElement {
                 position: relative;
                 display: inline-block;
                 border-bottom: 3px solid red;
-                margin-bottom: -.64rem;
-                padding-bottom: .45rem;
+                margin-bottom: -.75rem;
+                padding-bottom: .34rem;
+            }
+
+            .badge {
+                display: inline-flex;
+                border-radius: 40%;
+                padding: .2rem .6rem;
+                background-color: #eee;
+                justify-content: center;
+                align-items: middle;
+                font-weight: 100 !important;
             }
 
             @media (max-width: 700px) {
+                header {
+                    background: white;
+                }
+
                 ul {
                     justify-content: center;
+                    background: white;
+                    font-size: .8rem;
+                }
+
+                ul li:nth-child(2) {
+                    display: inline-flex;
+                }
+                .badge {
+                    margin-left: .6rem;
                 }
             }
         </style>
@@ -68,6 +111,9 @@ class NavHeader extends HTMLElement {
                 </li>
                 <li>
                     Repositories
+                    <span class="badge">
+                        ${this.repoamount}
+                    </span>
                 </li>
                 <li>
                     Projects

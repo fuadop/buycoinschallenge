@@ -8,10 +8,11 @@ class Repostiory extends HTMLElement {
         this.starsamount = "Loading..."
         this.forksamount = "Loading..."
         this.lastupdated = "Loading..."
+        this.langcolor = "black"
     }
 
     static get observedAttributes () {
-        return ["title", "lang", "stars", "forks", "lastupdate"]
+        return ["title", "lang", "stars", "forks", "lastupdate", "color"]
     }
 
     attributeChangedCallback (name, _oldValue, newValue) {
@@ -31,6 +32,9 @@ class Repostiory extends HTMLElement {
             case "lastupdate":
                 this.lastupdated = newValue
                 break
+            case "color":
+                this.langcolor = newValue
+                break
             default:
                 break
         }
@@ -46,7 +50,6 @@ class Repostiory extends HTMLElement {
         `
         <style>
             div {
-                border-bottom: 1px solid #eee;
                 border-top: 1px solid #eee;
                 padding: 1rem 0;
                 margin-right: 1rem;
@@ -71,7 +74,7 @@ class Repostiory extends HTMLElement {
 
             .language-color {
                 display: inline-block;
-                background-color: orange;
+                background-color: ${this.langcolor};
                 width: 1rem;
                 height: 1rem;
                 border-radius: 50%;
@@ -82,9 +85,13 @@ class Repostiory extends HTMLElement {
                 height: 1rem;
             }
 
-            @media (max-width: 700px) {
+            @media (max-width: 810px) {
                 div {
                     margin: 0 .5rem;
+                }
+
+                ul li {
+                    display: inline-flex;
                 }
             }
         </style>

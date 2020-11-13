@@ -7,6 +7,7 @@
 body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 .pl-5 {
@@ -24,6 +25,7 @@ body {
 
 .overview {
     width: 40%;
+    padding-right: .3rem;
 }
 
 @media (max-width: 700px) {
@@ -33,5 +35,11 @@ body {
     
     .overview {
         width: 100%;
+        padding-right: 0;
+        display: flex;
+    }
+    
+    .pl-5 {
+        padding: 1rem !important;
     }
 }

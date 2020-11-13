@@ -47,6 +47,12 @@ class UserDetails extends HTMLElement {
                 color: grey;
                 margin: 0 0;
             }
+
+            @media(max-width: 700px) {
+                p.about {
+                    padding: .3rem;
+                }
+            }
         </style>
         <div>
             <h3 class="fullname">
