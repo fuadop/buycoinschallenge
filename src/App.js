@@ -19,12 +19,9 @@ class App extends HTMLElement {
                         forksCount: "...",
                         stargazerCount: "...",
                         updatedAt: "0",
-                        languages: {
-                            nodes: [
-                                {
-                                    name: "..."
-                                }
-                            ]
+                        primaryLanguage: {
+                            name: "...",
+                            color: "black"
                         }
                     }
                 ]
@@ -57,7 +54,7 @@ class App extends HTMLElement {
             const data = await fetch("https://api.github.com/graphql" ,{
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer 258fc3fadb79a9fc71de5fdaf10a21a29b9d7546"
+                    "Authorization": "Bearer " + process.env.ACCESS_TOKEN
                 },
                 body: JSON.stringify({
                     query: `
@@ -76,11 +73,9 @@ class App extends HTMLElement {
                                         forkCount
                                         stargazerCount
                                         updatedAt
-                                        languages(first: 1) {
-                                            nodes {
-                                                name
-                                                color
-                                            }
+                                        primaryLanguage {
+                                            name
+                                            color
                                         }
                                     }
                                 }
@@ -103,10 +98,10 @@ class App extends HTMLElement {
             `
                 <single-repo
                 title="${repository.name}"
-                lang="${repository.languages.nodes.length > 0 ? repository.languages.nodes[0].name : "empty"}"
+                lang="${repository.primaryLanguage ? repository.primaryLanguage.name : "empty"}"
                 stars="${repository.stargazerCount}"
                 forks="${repository.forkCount}"
-                color="${repository.languages.nodes.length > 0 ? repository.languages.nodes[0].color : "black"}"
+                color="${repository.primaryLanguage ? repository.primaryLanguage.color : "black"}"
                 lastupdate="${new Date(repository.updatedAt).getDay() + " " + this.monthsEnum[new Date(repository.updatedAt).getMonth()]}"
                 ></single-repo>
             `
